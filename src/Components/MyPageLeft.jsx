@@ -8,6 +8,8 @@ import {
   Phone,
 } from "@material-ui/icons";
 
+import { Link, Route, BrowserRouter as Router } from "react-router-dom";
+
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
@@ -107,6 +109,8 @@ const MenuItem = styled.div`
   font-size: 15px;
   cursor: pointer;
   transition: all 0.5s ease;
+  text-decoration: none;
+  color: #808080;
   &:hover {
     background-color: #bcfdf3;
     color: #004700;
@@ -155,44 +159,69 @@ const MyPageLeft = () => {
       <MenuContainer>
         <MenuGroup>
           <MenuWrapper>
-            <MenuItem>
-              <BusinessOutlined
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              />
-              회사정보 관리
-            </MenuItem>
+            <Link
+              to="/company"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <MenuItem>
+                <BusinessOutlined
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
+                />
+                회사정보 관리
+              </MenuItem>
+            </Link>
           </MenuWrapper>
           <MenuWrapper>
-            <MenuItem>
-              <BadgeOutlinedIcon
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              />
-              구성원 관리
-            </MenuItem>
+            <Link
+              to="/members"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <MenuItem>
+                <BadgeOutlinedIcon
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
+                />
+                구성원 관리
+              </MenuItem>
+            </Link>
           </MenuWrapper>
           <MenuWrapper>
-            <MenuItem>
-              <GroupAddOutlined
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              />
-              고객사 관리
-            </MenuItem>
+            <Link
+              to="/clients"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <MenuItem>
+                <GroupAddOutlined
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
+                />
+                고객사 관리
+              </MenuItem>
+            </Link>
           </MenuWrapper>
           <MenuWrapper>
-            <MenuItem>
-              <LibraryBooksOutlinedIcon
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              />
-              사내서류 관리
-            </MenuItem>
+            <Link
+              to="/documents"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <MenuItem>
+                <LibraryBooksOutlinedIcon
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
+                />
+                사내서류 관리
+              </MenuItem>
+            </Link>
           </MenuWrapper>
           <MenuWrapper>
-            <MenuItem>
-              <MenuBookOutlinedIcon
-                style={{ marginRight: "20px", marginLeft: "20px" }}
-              />
-              문서양식 관리
-            </MenuItem>
+            <Link
+              to="/platforms"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
+              <MenuItem>
+                <MenuBookOutlinedIcon
+                  style={{ marginRight: "20px", marginLeft: "20px" }}
+                />
+                문서양식 관리
+              </MenuItem>
+            </Link>
           </MenuWrapper>
         </MenuGroup>
       </MenuContainer>

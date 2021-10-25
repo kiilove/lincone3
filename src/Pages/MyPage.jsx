@@ -1,7 +1,12 @@
+import { Route } from "react-router";
 import styled from "styled-components";
 import Members from "../Components/Members";
+import Company from "../Components/Company";
 
 import MyPageLeft from "../Components/MyPageLeft";
+import Clients from "../Components/Clients";
+import Documents from "../Components/Documents";
+import Platforms from "../Components/Platforms";
 
 const Container = styled.div`
   width: 100%;
@@ -48,7 +53,7 @@ const InfoWrapper = styled.div`
   display: flex;
 `;
 
-const MyPage = () => {
+const MyPage = (mainProp) => {
   return (
     <Container>
       <Wrapper>
@@ -56,7 +61,12 @@ const MyPage = () => {
           <MyPageLeft />
         </MenuContainer>
         <InfoContainer>
-          <Members />
+          <Route exact path="/" component={Members} />
+          <Route path="/company" component={Company} />
+          <Route path="/members" component={Members} />
+          <Route path="/clients" component={Clients} />
+          <Route path="/documents" component={Documents} />
+          <Route path="/platforms" component={Platforms} />
         </InfoContainer>
       </Wrapper>
     </Container>

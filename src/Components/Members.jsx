@@ -73,7 +73,7 @@ const Members = () => {
     return (
       <CardWrapper key={item.id}>
         <CardAvatar>
-          <Avatar sx={{ width: 100, height: 100 }} />
+          <Avatar src={item.profile} sx={{ width: 100, height: 100 }} />
         </CardAvatar>
         <CardInfo>
           <UserName>{item.userName}</UserName>
