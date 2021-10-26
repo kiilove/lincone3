@@ -2,6 +2,7 @@ import { Button, Avatar } from "@mui/material";
 import styled from "styled-components";
 
 import { memData } from "../tempdata/member";
+import ActionHeader from "./ActionHeader";
 
 const Container = styled.div`
   width: 100%;
@@ -68,6 +69,23 @@ const CardAction = styled.div`
   margin-top: 20px;
 `;
 
+const ActionContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const ActionWrapper = styled.div`
+  width: 98%;
+  height: 100%;
+  background-color: wheat;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
 const Members = () => {
   const CardDom = ({ item }) => {
     return (
@@ -91,6 +109,10 @@ const Members = () => {
   return (
     <Container>
       <Wrapper>
+        <ActionHeader
+          title={"구성원관리"}
+          subTitle={"상세보기 클릭시 구성원 정보의 편집이 가능합니다. "}
+        />
         {memData.map((item) => (
           <CardContainer>
             <CardDom item={item} />
