@@ -3,11 +3,28 @@ import { Stepper, Step, StepButton, Button } from "@mui/material";
 
 import styled from "styled-components";
 import { Label } from "@mui/icons-material";
-const steps = ["기본정보(필수항목 포함)", "부가정보(선택)", "사내서류 등록"];
+import CompStepBasic from "./CompStepBasic";
+import CompStepOption from "./CompStepOption";
+import CompStepDocu from "./CompStepDocu";
+// const steps = ["기본정보(필수항목 포함)", "부가정보(선택)", "사내서류 등록"];
+const steps = [
+  {
+    label: "기본정보(필수)",
+    data: <CompStepBasic />,
+  },
+  {
+    label: "부가정보(선택)",
+    data: <CompStepOption />,
+  },
+  {
+    label: "서류목록(선택)",
+    data: <CompStepDocu />,
+  },
+];
 
 const Container = styled.div`
   width: 100%;
-  height: 500px;
+  height: 600px;
 `;
 
 const Wrapper = styled.div`
@@ -20,7 +37,6 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   border-radius: 5px;
-  border: 1px solid #f7f0e9;
   -webkit-box-shadow: 1px 2px 3px -3px #d8dacf;
   box-shadow: 1px 2px 3px -3px #d8dacf;
 `;
@@ -30,7 +46,6 @@ const SubContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: firebrick;
 `;
 const NavWrapper = styled.div`
   display: flex;
@@ -39,8 +54,6 @@ const Navbar = styled.div`
   width: ${100 / steps.length}%;
   height: 20px;
   padding: 20px;
-  background-color: lightcoral;
-  border: 0.5px solid gray;
   display: flex;
 `;
 
@@ -50,7 +63,7 @@ const BodyWrapper = styled.div`
 const StepBody = styled.div`
   width: 100%;
   height: 400px;
-  background-color: lightgoldenrodyellow;
+  padding: 20px;
 `;
 const Actionbar = styled.div``;
 
@@ -99,17 +112,21 @@ const Company = () => {
     setActiveStep(0);
     setCompleted({});
   };
+
+  const stepContent = () => {
+    return steps[activeStep].data;
+  };
   return (
     <Container>
       <Wrapper>
         <SubContainer>
           <NavWrapper>
-            {steps.map((label, index) => (
-              <Navbar>{label}</Navbar>
+            {steps.map((item, index) => (
+              <Navbar>{item.label}</Navbar>
             ))}
           </NavWrapper>
           <BodyWrapper>
-            <StepBody>body</StepBody>
+            <StepBody>{stepContent()}</StepBody>
           </BodyWrapper>
         </SubContainer>
       </Wrapper>
