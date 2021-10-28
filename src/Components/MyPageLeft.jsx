@@ -20,7 +20,6 @@ const Container = styled.div`
   width: 100%;
   padding: 25px;
   max-height: 400px;
-  background-color: ;
 `;
 
 const UserInfoContainer = styled.div`
