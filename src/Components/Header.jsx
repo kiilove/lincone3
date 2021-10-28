@@ -94,6 +94,7 @@ const QuickItem = styled.div`
     background-color: #87ddd0;
     color: white;
     transform: scale(1.1);
+    cursor: pointer;
   }
 `;
 

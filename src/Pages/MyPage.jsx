@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 const MenuContainer = styled.div`
   display: flex;
   width: 100%;
-  min-height: 300px;
+  height: 530px;
   flex: 1;
   margin-right: 25px;
   background-color: white;
@@ -41,16 +41,6 @@ const InfoContainer = styled.div`
   width: 100%;
   min-height: 300px;
   flex: 3;
-`;
-
-const MenuWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: white;
-`;
-
-const InfoWrapper = styled.div`
-  display: flex;
 `;
 
 const MyPage = (mainProp) => {

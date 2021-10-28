@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Step, Stepper, StepButton, Button, Box } from "@mui/material";
 
 import styled from "styled-components";
-import { Label } from "@mui/icons-material";
 import CompStepBasic from "./CompStepBasic";
 import CompStepOption from "./CompStepOption";
 import CompStepDocu from "./CompStepDocu";
@@ -16,27 +15,24 @@ const steps = [
     label: "부가정보(선택)",
     data: <CompStepOption />,
   },
-  {
-    label: "서류목록(선택)",
-    data: <CompStepDocu />,
-  },
 ];
 
 const Container = styled.div`
   width: 100%;
-  height: 600px;
+  height: 560px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 95%;
   height: 100%;
   justify-content: center;
+  align-items: center;
   background-color: white;
   padding: 20px;
-  background-color: white;
   border-radius: 5px;
+  border: 1px solid #f7f0e9;
   -webkit-box-shadow: 1px 2px 3px -3px #d8dacf;
   box-shadow: 1px 2px 3px -3px #d8dacf;
 `;
@@ -46,33 +42,28 @@ const SubContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-`;
-const NavWrapper = styled.div`
-  display: flex;
-`;
-const Navbar = styled.div`
-  width: ${100 / steps.length}%;
-  height: 20px;
-  padding: 20px;
-  display: flex;
+  align-items: center;
 `;
 
 const BodyWrapper = styled.div`
   display: flex;
+  width: 95%;
 `;
 
 const ActionWrapper = styled.div`
   display: flex;
+  margin-top: 20px;
+  width: 100%;
+  justify-content: center;
 `;
 const StepBody = styled.div`
   width: 100%;
   height: 400px;
-  padding: 20px;
 `;
 const Actionbar = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
 `;
 
 const Company = () => {
@@ -130,7 +121,11 @@ const Company = () => {
     <Container>
       <Wrapper>
         <SubContainer>
-          <Stepper nonLinear activeStep={activeStep} sx={{ mt: 3 }}>
+          <Stepper
+            nonLinear
+            activeStep={activeStep}
+            sx={{ mt: 3, mb: 7, width: "95%" }}
+          >
             {steps.map((item, index) => (
               <Step key={item.label}>
                 <StepButton color="inherit" onClick={handleStep(index)}>

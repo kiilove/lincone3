@@ -18,7 +18,9 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  padding: 30px;
+  padding: 25px;
+  max-height: 400px;
+  background-color: ;
 `;
 
 const UserInfoContainer = styled.div`
@@ -91,6 +93,7 @@ const MenuContainer = styled.div`
 const MenuGroup = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   margin-top: 20px;
 `;
 

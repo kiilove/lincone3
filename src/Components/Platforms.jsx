@@ -6,7 +6,7 @@ const Container = styled.div`
 `;
 
 const Platforms = () => {
-  return <Container>문서양식</Container>;
+  return <Container>문서관리</Container>;
 };
 
 export default Platforms;

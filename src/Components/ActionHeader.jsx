@@ -7,15 +7,13 @@ const Container = styled.div`
   min-height: 100px;
   max-height: 150px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 20px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 93%;
+  width: 95%;
   height: 60px;
   padding: 20px;
   background-color: white;

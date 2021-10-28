@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const CardContainer = styled.div`
