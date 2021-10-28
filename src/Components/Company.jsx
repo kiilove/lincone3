@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stepper, Step, StepButton, Button } from "@mui/material";
+import { Step, Stepper, StepButton, Button, Box } from "@mui/material";
 
 import styled from "styled-components";
 import { Label } from "@mui/icons-material";
@@ -60,59 +60,69 @@ const Navbar = styled.div`
 const BodyWrapper = styled.div`
   display: flex;
 `;
+
+const ActionWrapper = styled.div`
+  display: flex;
+`;
 const StepBody = styled.div`
   width: 100%;
   height: 400px;
   padding: 20px;
 `;
-const Actionbar = styled.div``;
+const Actionbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
 
 const Company = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [completed, setCompleted] = useState({});
-  const totalSteps = () => {
-    return steps.length;
+  const [skipped, setSkipped] = useState(new Set());
+
+  const isStepOptional = (step) => {
+    return step === 1;
   };
 
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
   };
 
   const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStep = (step) => () => {
-    setActiveStep(step);
-  };
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
 
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
   };
 
   const handleReset = () => {
     setActiveStep(0);
-    setCompleted({});
   };
-
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
   const stepContent = () => {
     return steps[activeStep].data;
   };
@@ -120,14 +130,44 @@ const Company = () => {
     <Container>
       <Wrapper>
         <SubContainer>
-          <NavWrapper>
+          <Stepper nonLinear activeStep={activeStep} sx={{ mt: 3 }}>
             {steps.map((item, index) => (
-              <Navbar>{item.label}</Navbar>
+              <Step key={item.label}>
+                <StepButton color="inherit" onClick={handleStep(index)}>
+                  {item.label}
+                </StepButton>
+              </Step>
             ))}
-          </NavWrapper>
+          </Stepper>
           <BodyWrapper>
             <StepBody>{stepContent()}</StepBody>
           </BodyWrapper>
+          <ActionWrapper>
+            {activeStep === steps.length ? (
+              <Button onClick={handleReset}>Reset</Button>
+            ) : (
+              <Actionbar>
+                <Button
+                  color="inherit"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Back
+                </Button>
+                <Box sx={{ flex: "1 1 auto" }} />
+                {isStepOptional(activeStep) && (
+                  <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                    Skip
+                  </Button>
+                )}
+
+                <Button onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                </Button>
+              </Actionbar>
+            )}
+          </ActionWrapper>
         </SubContainer>
       </Wrapper>
     </Container>
